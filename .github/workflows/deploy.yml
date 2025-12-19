@@ -13,7 +13,7 @@ jobs:
       - name: SSH Deploy
         uses: appleboy/ssh-action@v1
         with:
-          host: YOUR_VM_IP
+          host: 172.30.61.170
           username: devops
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
