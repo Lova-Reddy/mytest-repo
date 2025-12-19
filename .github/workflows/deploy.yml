@@ -1,0 +1,22 @@
+name: Deploy to Ubuntu VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: YOUR_VM_IP
+          username: devops
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/myapp
+            git pull origin main
+            sudo systemctl reload nginx
